@@ -8,7 +8,7 @@
 
 namespace ons {
 
-class  SystemPropKey {
+class SystemPropKey {
  public:
   SystemPropKey() {}
   ~SystemPropKey() {}
@@ -19,7 +19,7 @@ class  SystemPropKey {
   static const char* STARTDELIVERTIME;
 };
 
-class  ONSCLIENT_API Message {
+class ONSCLIENT_API Message {
  public:
   Message();
   Message(const std::string& topic, const std::string& tags, const std::string& byte_body);
@@ -35,40 +35,40 @@ class  ONSCLIENT_API Message {
   // userProperties was used to save user specific parameters which doesn't
   // belong to SystemPropKey
   void putUserProperties(const char* key, const char* value);
-	const char* getUserProperties(const char* key) const;
+  const char* getUserProperties(const char* key) const;
   void setUserProperties(std::map<std::string, std::string>& userProperty);
   std::map<std::string, std::string> getUserProperties() const;
 
   // systemProperties only save parameters defined in SystemPropKey, please do
   // not add other parameters into systemProperties, else it was not saved.
   void putSystemProperties(const char* key, const char* value);
-	const char* getSystemProperties(const char* key) const;
+  const char* getSystemProperties(const char* key) const;
   void setSystemProperties(std::map<std::string, std::string>& systemProperty);
   std::map<std::string, std::string> getSystemProperties() const;
 
-	const char* getTopic() const;
+  const char* getTopic() const;
   void setTopic(const char* topic);
 
-	const char* getTag() const;
+  const char* getTag() const;
   void setTag(const char* tags);
 
-	const char* getKey() const;
+  const char* getKey() const;
   void setKey(const char* keys);
 
-	const char* getMsgID() const;
+  const char* getMsgID() const;
   void setMsgID(const char* msgId);
 
-  const long long getStartDeliverTime() const;
+  long long getStartDeliverTime() const;
   void setStartDeliverTime(long long level);
 
   const char* getBody() const;
-  const char* getByteBody(int *len) const;
+  const char* getByteBody(int* len) const;
   const std::string getMsgBody() const;
-  const size_t getBodySize() const;
+  size_t getBodySize() const;
   void setMsgBody(const std::string msgbody);
   void setBody(unsigned char* byte_msgbody, int len);
 
-  const int getReconsumeTimes() const;
+  int getReconsumeTimes() const;
   void setReconsumeTimes(int reconsumeTimes);
 
   long long getStoreTimestamp() const;
@@ -82,9 +82,9 @@ class  ONSCLIENT_API Message {
 
   long long getQueueOffset() const;
   void setQueueOffset(long long queueOffset);
+
  protected:
-  void Init(const std::string& topic, const std::string& tags,
-            const std::string& keys, const std::string& body);
+  void Init(const std::string& topic, const std::string& tags, const std::string& keys, const std::string& body);
 
  private:
   std::string topic;
@@ -96,5 +96,5 @@ class  ONSCLIENT_API Message {
   std::map<std::string, std::string> userProperties;
 };
 
-}  //<!end namespace;
+}  // namespace ons
 #endif

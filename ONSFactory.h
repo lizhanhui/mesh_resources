@@ -1,6 +1,8 @@
 #ifndef __ONSFACTORY_H_
 #define __ONSFACTORY_H_
 
+#include <stdexcept>
+
 #include "LocalTransactionChecker.h"
 #include "ONSChannel.h"
 #include "ONSClientException.h"
@@ -16,15 +18,14 @@ class ONSCLIENT_API ONSFactoryProperty {
  public:
   ONSFactoryProperty();
   virtual ~ONSFactoryProperty();
-  bool checkValidityOfFactoryProperties(const std::string& key,
-                                        const std::string& value) throw(ons::ONSClientException);
+  bool checkValidityOfFactoryProperties(const std::string& key, const std::string& value) noexcept(false);
   const char* getLogPath() const;
   void setSendMsgTimeout(const int value);
   void setSendMsgRetryTimes(const int value);
   void setMaxMsgCacheSize(const int size);
   void setOnsTraceSwitch(bool onswitch);
-  void setOnsChannel(ONSChannel onsChannel) throw(ons::ONSClientException);
-  void setFactoryProperty(const char* key, const char* value) throw(ons::ONSClientException);
+  void setOnsChannel(ONSChannel onsChannel) noexcept(false);
+  void setFactoryProperty(const char* key, const char* value) noexcept(false);
   void setFactoryProperties(std::map<std::string, std::string> factoryProperties);
   std::map<std::string, std::string> getFactoryProperties() const;
   const char* getProducerId() const;
@@ -83,15 +84,13 @@ class ONSCLIENT_API ONSFactoryAPI {
   ONSFactoryAPI();
   virtual ~ONSFactoryAPI();
 
-  virtual ons::Producer* createProducer(ons::ONSFactoryProperty factoryProperty) throw(ons::ONSClientException);
-  virtual ons::OrderProducer* createOrderProducer(ons::ONSFactoryProperty factoryProperty) throw(
-      ons::ONSClientException);
-  virtual ons::OrderConsumer* createOrderConsumer(ons::ONSFactoryProperty factoryProperty) throw(
-      ons::ONSClientException);
-  virtual ons::TransactionProducer* createTransactionProducer(
-      ons::ONSFactoryProperty factoryProperty, ons::LocalTransactionChecker* checker) throw(ons::ONSClientException);
-  virtual ons::PullConsumer* createPullConsumer(ons::ONSFactoryProperty factoryProperty) throw(ons::ONSClientException);
-  virtual ons::PushConsumer* createPushConsumer(ons::ONSFactoryProperty factoryProperty) throw(ons::ONSClientException);
+  virtual ons::Producer* createProducer(ons::ONSFactoryProperty factoryProperty) noexcept(false);
+  virtual ons::OrderProducer* createOrderProducer(ons::ONSFactoryProperty factoryProperty) noexcept(false);
+  virtual ons::OrderConsumer* createOrderConsumer(ons::ONSFactoryProperty factoryProperty) noexcept(false);
+  virtual ons::TransactionProducer* createTransactionProducer(ons::ONSFactoryProperty factoryProperty,
+                                                              ons::LocalTransactionChecker* checker) noexcept(false);
+  virtual ons::PullConsumer* createPullConsumer(ons::ONSFactoryProperty factoryProperty) noexcept(false);
+  virtual ons::PushConsumer* createPushConsumer(ons::ONSFactoryProperty factoryProperty) noexcept(false);
 };
 
 class ONSCLIENT_API ONSFactory {

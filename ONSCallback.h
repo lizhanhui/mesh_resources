@@ -5,12 +5,12 @@
 #include "SendResultONS.h"
 
 namespace ons {
-    class SendCallbackONS {
-    public:
-        virtual ~SendCallbackONS() {}
-        virtual void onSuccess(SendResultONS& sendResult) {};
-        virtual void onException(ONSClientException& e) {};
-    };
+class SendCallbackONS {
+ public:
+  virtual ~SendCallbackONS() {}
+  virtual void onSuccess(SendResultONS& sendResult) { (void)sendResult; };
+  virtual void onException(ONSClientException& e) { (void)e; };
+};
 
-}  // end of namespace SendResultONS
+}  // namespace ons
 #endif  // end of _SENDCALLBACK_H_
